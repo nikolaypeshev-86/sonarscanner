@@ -4,7 +4,7 @@ node {
   }
   stage('SonarQube Analysis') {
   withSonarQubeEnv('sq19') {
-	addALMOctaneSonarQubeListener pushCoverage: true, pushVulnerabilities:true, sonarToken:sqp_f3682128003b51a07e9347843bba5d409b4f8203, sonarServerUrl:http://bgsovm00017.corp.polygran.de:9000
+	addALMOctaneSonarQubeListener pushCoverage: true, pushVulnerabilities:true, sonarToken:sqp_f3682128003b51a07e9347843bba5d409b4f8203, sonarServerUrl:'http://bgsovm00017.corp.polygran.de:9000'
 	sh(returnStatus: true, script: "mvn clean install sonar:sonar -Dsonar.host.url=http://bgsovm00017.corp.polygran.de:9000 -Dsonar.login=sqp_f3682128003b51a07e9347843bba5d409b4f8203 -Dsonar.analysis.buildNumber=${BUILD_NUMBER} -Dsonar.analysis.jobName=${JOB_NAME}")
 }
       //    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=Sonar -Dsonar.host.url=http://bgsovm00017.corp.polygran.de:9000 -Dsonar.login=sqp_f3682128003b51a07e9347843bba5d409b4f8203 -Dsonar.analysis.buildNumber=${BUILD_NUMBER} -Dsonar.analysis.jobName=${JOB_NAME}'
